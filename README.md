@@ -16,14 +16,14 @@ It also features an exclusive APP, using Cayenne API, which brings together sens
 There are 3 nodes, HAM-EXT (exterior), HAM-RDT (radiation) and HAM-GAS (gases), formed by all types of sensors. RDT and GAS, have gas sensors as Air Pollution, CO2, Natural Gas... which can affect heavily the duration of the battery, because of that, they are controlled by a transistor which the user can switch off/on. There is also the HAM-BLINDS node, which is the controller for the blinds. The last node is HAM-PEEPHOLE, which is a video surveillance system with vibration sensor, illuminance sensor and a loud alarm. The hub, HAM-HUB, is formed by a Sparkfun 8266 dev thing, temperature sensor, IR emitter, bluetooth, and in future updates it will feature a display in case internet access is down. The 3 node sensors have a built-in battery with charger, this allows to make them portable, and stick them in any surface. HAM-HUB is meant to be static, HAM-BLINDS is inside of a blind controller and HAM-PEEPHOLE is attached to a peephole, and it is also meant to be static because of the power consumption of the RPI 0 W. 
 ## CONNECTIVITY 
 The connectivity of the HAM network is not only WiFi, actually only HAM-HUB has it, to send data values to cayenne, and also HAM-PEEPHOLE, where a camera surveillance server is hosted. HAM-EXT, HAM-GAS and HAM-RDT are connected to the hub via bluetooth, but how? Well, there are some BT modules that features piconet, which is a multi-slave bluetooth network. However, that things are $$$$, because of that, I decided to make my own false "piconet". Summarized, the proccess is a cycle for each BT module, divided in 3 parts: Connection, Gathering the sensors value and Disconnection. This is possible by entering the AT mode in a HC-05, and controlling the AT commands. This can seem tricky, but it actually made me end up making a hole protocol for all the nodes, which was a great idea. The protocol is named HAM-PROTOCOL, and it allows transfering, integer, float or string, information by the two ways in all my nodes, and it's more, I can make more nodes whenever I want, and putting them to the network in a few minutes. The protocol is explained in the codes of the nodes. However it looks like this:
-To request a value or a sensor or something:
+- To request a value or a sensor or something:
 <HAM-PROTOCOL,REQUEST>    
 Example:  <HAM-PROTOCOL,batteryRDT.request> 
-To answer that request or send information:
+- To answer that request or send information:
 <HAM-PROTOCOL,CHANNEL,INT_DATA,FLOAT_DATA,STRING_DATA>
 Example:  
 <HAM-PROTOCOL,batteryRDT,readBattery(),0,"0">
-Another example: Request and responses used in the cycle for the false piconet:
+- Another example: Request and responses used in the cycle for the false piconet:
 Connection:
 Request:
 <HAM-PROTOCOL,ready.request> 
