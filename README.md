@@ -37,20 +37,20 @@ Response:
 <HAM-PROTOCOL,HAM-EXT,0,0,"OK-OFF">
 Finnaly, because HAM-BLINDS is inside of a little blind controller, it has to be very small, that's why I went for ATTINY85, and for the connectivity I decided IR using the HAM-PROTOCOL. 
 ## THE LIST OF SENSORS, ACTUATORS AND MORE, THAT EACH NODE HAS AND WHY 
-HAM-HUB
+### HAM-HUB
 - TMP-36GZ: Temperature sensor. For room temperature.
 - HC-SR501: IR Motion sensor. If anyone wants to touch the hub I will know...
 - IR Emitter: To control HAM-BLINDS (or anything with IR).
 - HC-05: In MASTER mode, to control all the Slaves.
-HAM-PEEPHOLE
+### HAM-PEEPHOLE
 - KY-01: Vibration sensor. It detects if anyone is entering or if the lock is being forced by burglars.
 - LDR: Peephole darkness sensor. It detects if someone covers the peephole and blocks the video from the camera. As RPI 0 W doesn't have any analog inputs, it has a special circuit which RPI measures the time the capacitor takes to fill.
 - Alarm: Loud alarm, borrowed from a old lego block I had, which RPI activates if the camera is blocked for 5 seconds, or if the vibrations are continuos.
 - Webcam: Old webcam from a dead laptop. It can be any usb camera as RPI is using Motion script.
-HAM-BLINDS
+### HAM-BLINDS
 - IR Receiver: To receive requests from HAM-HUB.
 - Transistors: An ATTINY85 controls the motherboard of the blinds controller with transistors.
-HAM-EXT
+### HAM-EXT
 - MQ 135: Air pollution sensor. God bless global warming!
 - DHT11: Humidity/Temperature sensor. For exterior temperature/humidity.
 - GY-91: Barometric pressure and altitude sensor, well altitude is not being measured (useless I think).
@@ -58,13 +58,13 @@ HAM-EXT
 - LDR: Solar Illuminance sensor. Just take sun cream if this sensor says to you.
 - UVM-30A: Solar UV sensor. High UV causes skin cancer.
 - HC-06: Slave bluetooth for communication.
-HAM-RDT
+### HAM-RDT
 - EMF Sensor: Electromagnetic field sensor. That radiation can cause cancer. This sensor is based on an antenna with a 3.3MOhm resistor.
 - KY-05: Magnetic field sensor. Magnetic waves disturb our dreams.
 - TSOP 34138: IR radiaton sensor. The atmosphere is pretty hot! Open the windows!
 - SPARKFUN Electret MIC: You can already complain to your neighbor.
 - HC-06: Slave bluetooth for communication.
-HAM-GAS
+### HAM-GAS
 - MQ 2: CO2 sensor. CO2 is never good...
 - MQ 5: Natural gas. At least my boiler works with it, so its good to detect any gas leak.
 - MQ 6: Butane/Propane. Well I don't have a gas cooker, but my neighbors yes.
@@ -72,8 +72,8 @@ HAM-GAS
 - Thermistor: Temperature sensor. For Kitchen temperature (I run out of digital tmp sensors).
 - KY-026: Fire sensor. Self-explanatory.
 - HC-06: Slave bluetooth for communication.
-THE HAM APP 
+## THE HAM APP 
 It's in beta phase, so there is a bug with ham-gas displaying a "-", and the camera viewer works when it wants, but if I view it with chrome it works, I don't know why...
 See https://www.hackster.io/neoxelox/ham-home-automation-and-monitoring-system-930ad4 for detailed images.
-CONCLUSION 
+## CONCLUSION 
 The nodes doesn't have an enclosure, which would be great, sadly I don't have a 3DPrinter, and I cannot use another material like wood, because of its weight. However, I have already experimented with 3D Modeling and I have made a sketch of how enclosures could be.
